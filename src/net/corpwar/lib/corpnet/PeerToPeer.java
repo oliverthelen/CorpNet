@@ -226,6 +226,15 @@ public class PeerToPeer {
         }
     }
 
+    /**
+     * Send a message to the MasterServer
+     * @param sendObject
+     */
+    public <T> void sendToMasterServer(T sendObject) {
+        if (masterServer != null) {
+            masterServer.addToSendQue(SerializationUtils.getInstance().serialize(sendObject), NetworkSendType.PEER_DATA);
+        }
+    }
 
     /**
      * Send an unreliable message to all clients that is connected
